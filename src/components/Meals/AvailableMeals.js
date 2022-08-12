@@ -1,3 +1,5 @@
+import Card from '../UI/Card';
+import MealItem from './MealItem/MealItem';
 import MealsSection from './style/AvailableMeals';
 
 const DUMMY_MEALS = [
@@ -28,11 +30,23 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => <li>{meal.name}</li>);
+  const mealsList = DUMMY_MEALS.map((meal) => (
+    <MealItem
+      key={meal.id}
+      //1. one prop approach
+      meal={meal}
+      //2. many props approach
+      // name={meal.name}
+      // description={meal.description}
+      // price={meal.price}
+    />
+  ));
 
   return (
     <MealsSection>
-      <ul>{mealsList}</ul>
+      <Card>
+        <ul>{mealsList}</ul>
+      </Card>
     </MealsSection>
   );
 };

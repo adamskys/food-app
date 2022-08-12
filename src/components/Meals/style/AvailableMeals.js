@@ -25,15 +25,3 @@ const MealsSection = styled.section`
 `;
 
 export default MealsSection;
-
-// @keyframes meals-appear {
-//   from {
-//     opacity: 0;
-//     transform: translateY(3rem);
-//   }
-
-//   to {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
