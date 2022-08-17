@@ -30,4 +30,10 @@ const ImgContainer = styled.div`
   }
 `;
 
-export { StyledHeader, ImgContainer };
+const LogoContainer = styled.div`
+  img {
+    height: 50px;
+  }
+`;
+
+export { StyledHeader, ImgContainer, LogoContainer };
