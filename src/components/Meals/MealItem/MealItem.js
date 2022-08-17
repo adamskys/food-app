@@ -11,10 +11,10 @@ const MealItem = ({ meal: { id, name, description, price } }) => {
 
   const addToCartHandler = (amount) => {
     cartContext.addItem({
-      id: id,
-      name: name,
-      amount: amount,
-      price: price,
+      id,
+      name,
+      amount,
+      price,
     });
   };
 

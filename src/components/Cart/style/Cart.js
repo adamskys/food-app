@@ -5,7 +5,11 @@ const cartItem = styled.ul`
   margin: 0;
   padding: 0;
   max-height: 20rem;
-  overflow: auto;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TotalSection = styled.div`
