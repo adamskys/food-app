@@ -3,7 +3,7 @@ import { StyledButton, Icon, Badge } from './style/HeaderCartButton';
 
 const HeaderCartButton = (props) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={props.onClick}>
       <Icon>
         <CartIcon />
       </Icon>
