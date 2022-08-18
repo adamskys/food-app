@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 
 import CartIcon from '../Cart/CartIcon';
 import CartContext from '../../store/cart-context';
-import { StyledButton, Icon, Badge } from './style/HeaderCartButton';
+import Styles from './style/HeaderCartButton';
 
 const HeaderCartButton = (props) => {
   const [btnHighlight, setBtnHighlight] = useState(false);
@@ -32,13 +32,13 @@ const HeaderCartButton = (props) => {
   }, [items]);
 
   return (
-    <StyledButton className={btnClasses} onClick={props.onClick}>
-      <Icon>
+    <Styles.StyledButton className={btnClasses} onClick={props.onClick}>
+      <Styles.Icon>
         <CartIcon />
-      </Icon>
+      </Styles.Icon>
       <span></span>
-      <Badge>{numberOfCartItems}</Badge>
-    </StyledButton>
+      <Styles.Badge>{numberOfCartItems}</Styles.Badge>
+    </Styles.StyledButton>
   );
 };
 

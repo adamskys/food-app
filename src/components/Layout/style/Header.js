@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const StyledHeader = styled.header`
+const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
@@ -36,4 +36,4 @@ const LogoContainer = styled.div`
   }
 `;
 
-export { StyledHeader, ImgContainer, LogoContainer };
+export default { Header, ImgContainer, LogoContainer };
