@@ -17,6 +17,27 @@ const StyledButton = styled.button`
   &:active {
     background-color: #7a3430;
   }
+
+  &.bump {
+    animation: bump 300ms ease-out;
+  }
+
+  @keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 `;
 
 const Icon = styled.span`
@@ -38,31 +59,6 @@ const Badge = styled.span`
   }
 `;
 
-// .button:hover .badge,
-// .button:active .badge {
-//   background-color: #92320c;
-// }
-
-// .bump {
-//   animation: bump 300ms ease-out;
-// }
-
-// @keyframes bump {
-//   0% {
-//     transform: scale(1);
-//   }
-//   10% {
-//     transform: scale(0.9);
-//   }
-//   30% {
-//     transform: scale(1.1);
-//   }
-//   50% {
-//     transform: scale(1.15);
-//   }
-//   100% {
-//     transform: scale(1);
-//   }
-// }
+const AnimatedButton = styled(StyledButton)``;
 
 export { StyledButton, Icon, Badge };
