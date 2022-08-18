@@ -1,4 +1,4 @@
-import { StyledHeader, ImgContainer, LogoContainer } from './style/Header';
+import Styles from './style/Header';
 import HeaderCartButton from './HeaderCartButton';
 
 import logoImg from './../../assets/take-away.png';
@@ -7,15 +7,15 @@ import mealsImg from '../../assets/dinner.jpeg';
 const Header = (props) => {
   return (
     <>
-      <StyledHeader>
-        <LogoContainer>
+      <Styles.Header>
+        <Styles.LogoContainer>
           <img src={logoImg} />
-        </LogoContainer>
+        </Styles.LogoContainer>
         <HeaderCartButton onClick={props.onShowCart} />
-      </StyledHeader>
-      <ImgContainer>
+      </Styles.Header>
+      <Styles.ImgContainer>
         <img src={mealsImg} alt="A table full of food" />
-      </ImgContainer>
+      </Styles.ImgContainer>
     </>
   );
 };

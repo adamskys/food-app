@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const cartItem = styled.ul`
+const CartItem = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -23,32 +23,45 @@ const TotalSection = styled.div`
 
 const Actions = styled.div`
   text-align: right;
+`;
 
-  & button {
-    font: inherit;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #f55951;
-    padding: 0.5rem 2rem;
-    border-radius: 12px;
-    margin-left: 1rem;
+const Button = styled.button`
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #f55951;
+  padding: 0.5rem 2rem;
+  border-radius: 12px;
+  margin-left: 1rem;
+
+  &:hover,
+  &:active {
+    background-color: #c9554f;
+    border-color: #c9554f;
+    color: white;
   }
+`;
+
+const ButtonClose = styled(Button)`
+  color: #f55951;
+`;
+
+const ButtonOrder = styled(Button)`
+  background-color: #f55951;
+  color: white;
 
   & button:hover,
   & button:active {
     background-color: #c9554f;
     border-color: #c9554f;
     color: white;
-  }
-
-  & .button--alt {
-    color: #f55951;
-  }
-
-  & .button {
-    background-color: #f55951;
-    color: white;
-  }
 `;
 
-export default { cartItem, TotalSection, Actions };
+export default {
+  CartItem,
+  TotalSection,
+  Actions,
+  Button,
+  ButtonClose,
+  ButtonOrder,
+};

@@ -59,6 +59,4 @@ const Badge = styled.span`
   }
 `;
 
-const AnimatedButton = styled(StyledButton)``;
-
-export { StyledButton, Icon, Badge };
+export default { StyledButton, Icon, Badge };

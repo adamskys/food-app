@@ -20,7 +20,7 @@ const Cart = (props) => {
   };
 
   const cartItems = (
-    <Styles.cartItem>
+    <Styles.CartItem>
       {cartContext.items.map((item) => (
         <CartItem
           key={item.id}
@@ -31,7 +31,7 @@ const Cart = (props) => {
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
       ))}
-    </Styles.cartItem>
+    </Styles.CartItem>
   );
 
   return (
@@ -42,10 +42,8 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </Styles.TotalSection>
       <Styles.Actions>
-        <button className="button--alt" onClick={props.onClose}>
-          Close
-        </button>
-        {hasItems && <button className="button">Order</button>}
+        <Styles.ButtonClose onClick={props.onClose}>Close</Styles.ButtonClose>
+        {hasItems && <Styles.ButtonOrder>Order</Styles.ButtonOrder>}
       </Styles.Actions>
     </Modal>
   );
