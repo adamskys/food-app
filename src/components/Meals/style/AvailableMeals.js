@@ -24,4 +24,14 @@ const MealsSection = styled.section`
   }
 `;
 
-export default MealsSection;
+const MealsLoading = styled.section`
+  text-align: center;
+  color: white;
+`;
+
+const MealsError = styled.section`
+  text-align: center;
+  color: red;
+`;
+
+export default { MealsSection, MealsLoading, MealsError };
