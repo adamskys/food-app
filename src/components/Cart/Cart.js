@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 import Styles from './style/Cart';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
+import { postData } from '../../util/api';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -29,16 +30,12 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch(
-      'https://react-http-32e65-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartContext.items,
-        }),
-      }
-    );
+
+    const responseData = await postData('orders', {
+      user: userData,
+      orderedItems: cartContext.items,
+    });
+
     setIsSubmitting(false);
     setDidSubmit(true);
     cartContext.clearCart();
