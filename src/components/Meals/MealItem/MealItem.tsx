@@ -4,12 +4,23 @@ import Styles from './style/MealItem';
 import MealItemForm from './MealItemForm';
 import CartContext from '../../../store/cart-context';
 
-const MealItem = ({ meal: { id, name, description, price } }) => {
+interface MealItemType {
+  meal: {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+  };
+}
+
+const MealItem: React.FC<MealItemType> = ({
+  meal: { id, name, description, price },
+}) => {
   const cartContext = useContext(CartContext);
 
   const formattedPrice = `$${price.toFixed(2)}`;
 
-  const addToCartHandler = (amount) => {
+  const addToCartHandler = (amount: number) => {
     cartContext.addItem({
       id,
       name,

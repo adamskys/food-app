@@ -7,7 +7,7 @@ import Cart from '../Cart/Cart';
 import logoImg from './../../assets/take-away.png';
 import mealsImg from '../../assets/dinner.jpeg';
 
-const Header = (props) => {
+const Header: React.FC = () => {
   const [cartShown, setCartShown] = useState(false);
 
   const showCartHandler = () => {
@@ -24,7 +24,7 @@ const Header = (props) => {
         <Styles.LogoContainer>
           <img src={logoImg} />
         </Styles.LogoContainer>
-        <HeaderCartButton onClick={showCartHandler} />
+        <HeaderCartButton onShowCartHandler={showCartHandler} />
         {cartShown && <Cart onClose={hideCartHandler} />}
       </Styles.Header>
       <Styles.ImgContainer>

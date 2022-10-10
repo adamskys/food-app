@@ -4,7 +4,11 @@ import CartIcon from '../Cart/CartIcon';
 import CartContext from '../../store/cart-context';
 import Styles from './style/HeaderCartButton';
 
-const HeaderCartButton = (props) => {
+interface Props {
+  onShowCartHandler: () => void;
+}
+
+const HeaderCartButton: React.FC<Props> = (props) => {
   const [btnHighlight, setBtnHighlight] = useState(false);
   const cartContext = useContext(CartContext);
 
@@ -32,7 +36,10 @@ const HeaderCartButton = (props) => {
   }, [items]);
 
   return (
-    <Styles.StyledButton className={btnClasses} onClick={props.onClick}>
+    <Styles.StyledButton
+      className={btnClasses}
+      onClick={props.onShowCartHandler}
+    >
       <Styles.Icon>
         <CartIcon />
       </Styles.Icon>

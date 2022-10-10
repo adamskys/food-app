@@ -1,6 +1,14 @@
 import Styles from './style/CartItem';
 
-const CartItem = (props) => {
+interface Props {
+  price: number;
+  name: string;
+  amount: number;
+  onRemove: () => void;
+  onAdd: () => void;
+}
+
+const CartItem: React.FC<Props> = (props) => {
   const formattedPrice = `$${props.price.toFixed(2)}`;
 
   return (
