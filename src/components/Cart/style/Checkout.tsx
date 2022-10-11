@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
 
-// interface StyledProps {
-// theme: Theme;
-// }
 type ComponentProps = { invalid?: boolean };
 
 const Form = styled.form`
@@ -78,12 +75,3 @@ const SubmitButton = styled(Button)`
 `;
 
 export default { Form, Control, Actions, Button, SubmitButton };
-
-// .invalid label {
-//   color: #ca3e51;
-// }
-
-// .invalid input {
-//   border-color: #aa0b20;
-//   background-color: #ffeff1;
-// }

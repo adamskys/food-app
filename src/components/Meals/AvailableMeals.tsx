@@ -47,17 +47,7 @@ const AvailableMeals = () => {
     );
   }
 
-  const mealsList = meals.map((meal) => (
-    <MealItem
-      key={meal.id}
-      //1. one prop approach
-      meal={meal}
-      //2. many props approach
-      // name={meal.name}
-      // description={meal.description}
-      // price={meal.price}
-    />
-  ));
+  const mealsList = meals.map((meal) => <MealItem key={meal.id} meal={meal} />);
 
   return (
     <Styles.MealsSection>

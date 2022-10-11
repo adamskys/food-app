@@ -22,7 +22,6 @@ const Checkout: React.FC<CheckoutProps> = (props) => {
     postCode: true,
   });
 
-  // do I have to set value to null? if so do I have to use ?/! operator at current?
   const nameInputRef = useRef<HTMLInputElement>();
   const streetInputRef = useRef<HTMLInputElement>();
   const postCodeInputRef = useRef<HTMLInputElement>();

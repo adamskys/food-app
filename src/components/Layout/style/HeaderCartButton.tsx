@@ -50,7 +50,6 @@ const Badge = styled.span`
   background-color: #f55951;
   padding: 0.1rem 0.5rem;
   border-radius: 10px;
-  // margin-left: 1rem;
   font-weight: bold;
 
   ${StyledButton}:hover &,
