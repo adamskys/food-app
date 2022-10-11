@@ -1,18 +1,13 @@
-import { FormEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Input from '../../UI/Input';
 import Styles from './style/MealItemForm';
 
-interface Props {
-  onAddToCart: (number: number) => void;
-  id: string;
-}
-
-const MealItemForm: React.FC<Props> = (props) => {
+const MealItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef<HTMLInputElement>();
+  const amountInputRef = useRef();
 
-  const submitHandler = (e: FormEvent) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
     const enteredAmount = amountInputRef.current.value;

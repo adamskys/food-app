@@ -1,10 +1,5 @@
 import styled from '@emotion/styled';
 
-// interface StyledProps {
-// theme: Theme;
-// }
-type ComponentProps = { invalid?: boolean };
-
 const Form = styled.form`
   margin: 1rem 0;
   width: 100%;
@@ -29,21 +24,22 @@ const Control = styled.div`
     max-width: 100%;
   }
 
-  ${({ invalid }: ComponentProps) =>
-    invalid
-      ? ` & label {
-          color: #ca3e51;
-        }
-    
-        & input {
-          border-color: #aa0b20;
-          background-color: #ffeff1;
-        }
-    
-        & p {
-          color: #ca3e51;
-        }`
-      : ''};
+  ${(props) =>
+    props.invalid &&
+    `
+    & label {
+      color: #ca3e51;
+    }
+
+    & input {
+      border-color: #aa0b20;
+      background-color: #ffeff1;
+    }
+
+    & p {
+      color: #ca3e51;
+    }
+  `}
 `;
 const Actions = styled.div`
   display: flex;

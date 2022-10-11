@@ -1,33 +1,13 @@
-import { ReactNode, useReducer } from 'react';
-import { CartItemType } from '../typings';
+import { useReducer } from 'react';
 
 import CartContext from './cart-context';
 
-interface Props {
-  item?: CartItemType;
-  children?: ReactNode;
-}
-
-interface CartContextType {
-  items: Array<CartItemType>;
-  totalAmount: number;
-}
-
-type ActionType = {
-  type: string;
-  item?: CartItemType;
-  id?: string;
-};
-
-const defaultCartState: CartContextType = {
+const defaultCartState = {
   items: [],
   totalAmount: 0,
 };
 
-const cartReducer = (
-  state: { totalAmount: number; items: CartItemType[] },
-  action: ActionType
-) => {
+const cartReducer = (state, action) => {
   if (action.type === 'ADD') {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
@@ -83,17 +63,17 @@ const cartReducer = (
   return defaultCartState;
 };
 
-const CartProvider: React.FC<Props> = (props) => {
+const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
   );
 
-  const addItemToCartHandler = (item: CartItemType) => {
+  const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: 'ADD', item: item });
   };
 
-  const removeItemFromCartHandler = (id: string) => {
+  const removeItemFromCartHandler = (id) => {
     dispatchCartAction({ type: 'REMOVE', id: id });
   };
 
