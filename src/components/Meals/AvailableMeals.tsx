@@ -7,7 +7,7 @@ import { getData } from '../../util/api';
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const [httpError, setHttpError] = useState(false);
 
   useEffect(() => {
     const fetchMeals = async () => {

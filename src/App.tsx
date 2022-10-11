@@ -6,7 +6,9 @@ function App() {
   return (
     <CartProvider>
       <Header />
-      <Meals />
+      <main>
+        <Meals />
+      </main>
     </CartProvider>
   );
 }

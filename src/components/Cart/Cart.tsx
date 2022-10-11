@@ -6,8 +6,11 @@ import Styles from './style/Cart';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 import { postData } from '../../util/api';
+import { CartItemType } from '../../typings';
+import { Props } from '../UI/Modal';
+import { CheckoutProps } from './Checkout';
 
-const Cart = (props) => {
+const Cart: React.FC<Props> = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
@@ -16,11 +19,11 @@ const Cart = (props) => {
   const totalAmount = `$${cartContext.totalAmount.toFixed(2)}`;
   const hasItems = cartContext.items.length > 0;
 
-  const cartItemAddHandler = (item) => {
+  const cartItemAddHandler = (item: CartItemType) => {
     cartContext.addItem({ ...item, amount: 1 });
   };
 
-  const cartItemRemoveHandler = (id) => {
+  const cartItemRemoveHandler = (id: string) => {
     cartContext.removeItem(id);
   };
 
@@ -28,7 +31,7 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler = async (userData) => {
+  const submitOrderHandler = async (userData: CheckoutProps) => {
     setIsSubmitting(true);
 
     const responseData = await postData('orders', {
@@ -70,7 +73,7 @@ const Cart = (props) => {
       {cartItems}
       <Styles.TotalSection>
         <span>Total amount</span>
-        <span>{totalAmount}</span>
+        <span>{!hasItems ? '$0.00' : totalAmount}</span>
       </Styles.TotalSection>
       {isCheckout && (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />

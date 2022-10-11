@@ -1,11 +1,20 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Styles from './style/Checkout';
 
-const isEmpty = (value) => value.trim() === '';
-const isFiveChars = (value) => value.trim().length === 5;
+export interface CheckoutProps {
+  onConfirm: ({}) => void;
+  onCancel: () => void;
+  name?: string;
+  street?: string;
+  city?: string;
+  postCode?: string;
+}
 
-const Checkout = (props) => {
+const isEmpty = (value: string) => value.trim() === '';
+const isFiveChars = (value: string) => value.trim().length === 5;
+
+const Checkout: React.FC<CheckoutProps> = (props) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -13,12 +22,13 @@ const Checkout = (props) => {
     postCode: true,
   });
 
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postCodeInputRef = useRef();
-  const cityInputRef = useRef();
+  // do I have to set value to null? if so do I have to use ?/! operator at current?
+  const nameInputRef = useRef<HTMLInputElement>();
+  const streetInputRef = useRef<HTMLInputElement>();
+  const postCodeInputRef = useRef<HTMLInputElement>();
+  const cityInputRef = useRef<HTMLInputElement>();
 
-  const confirmHandler = (e) => {
+  const confirmHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const enteredName = nameInputRef.current.value;
