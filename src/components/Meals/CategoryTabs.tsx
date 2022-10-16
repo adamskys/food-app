@@ -1,25 +1,64 @@
-import { Box, Tab, Tabs, ThemeProvider, Typography } from '@mui/material';
+// import { Box, Tab, Tabs, ThemeProvider, Typography } from '@mui/material';
 import { useState } from 'react';
-import { theme } from './style/CategoryTabs';
+// import AvailableMeals from './AvailableMeals';
 
-export const CategoryTabs = () => {
-  const [value, setValue] = useState('1');
-  const changeHandler = (e: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
+const CategoryTabs = () => {
+  const [activeCategory, setActiveCategory] = useState(0);
+
+  // todo: based on the time of the day
 
   return (
-    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Tabs
-        value={value}
-        onChange={changeHandler}
-        aria-label="Category tabs"
-        centered
-      >
-        <Tab label="Breakfast" value="1"></Tab>
-        <Tab label="Lunch" value="2"></Tab>
-        <Tab label="Dinner" value="3"></Tab>
-      </Tabs>
-    </Box>
+    <Tabs
+      selectedIndex={activeCategory}
+      onSelect={(index) => setActiveCategory(index)}
+    >
+      <TabList>
+        <Tab>Breakfast</Tab>
+        <Tab>Lunch</Tab>
+        <Tab>Dinner</Tab>
+      </TabList>
+
+      <TabPanel></TabPanel>
+      <TabPanel></TabPanel>
+      <TabPanel></TabPanel>
+    </Tabs>
   );
 };
+
+export default CategoryTabs;
+
+// return (
+//   <Tabs
+//     activeKey={activeCategory}
+//     onSelect={(category) => setActiveCategory(category)}
+//   >
+//     <Tab eventKey="breakfast" title="Breakfast">
+//       {/* <AvailableMeals /> */}
+//     </Tab>
+//     <Tab eventKey="lunch" title="Lunch"></Tab>
+//     <Tab eventKey="dinner" title="Dinner"></Tab>
+//   </Tabs>
+// );
+
+//   return (
+//     <Box sx={{ width: '100%' }}>
+//       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+//         <Tabs
+//           value={activeCategory}
+//           onChange={changeHandler}
+//           aria-label="Category tabs"
+//           centered
+//         >
+//           <Tab label="Breakfast" value="breakfast"></Tab>
+//           <Tab label="Lunch" value="lunch"></Tab>
+//           <Tab label="Dinner" value="dinner"></Tab>
+//         </Tabs>
+//       </Box>
+//       <TabPanel value={activeCategory} index={activeCategory}>
+//         {/* <AvailableMeals /> */}
+//       </TabPanel>
+//     </Box>
+//   );
