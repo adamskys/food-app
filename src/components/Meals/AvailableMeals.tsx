@@ -9,7 +9,7 @@ import 'react-tabs/style/react-tabs.css';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(false);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(
@@ -60,21 +60,19 @@ const AvailableMeals = () => {
       </Styles.MealsError>
     );
   }
-
-  // renaming ex: mealByCategory -> listedMeals
-  // another parameter which is mentioning sorting order
-  // based on sort order you will sort available meals by price
-  // after having the list of sortMeals you render the list
-  const listedMeals = (category: string) => {
-    const categoryMeals = meals
-      .filter((meal) => meal.category === category)
-      .map((meal) => <MealItem key={meal.id} meal={meal} />);
-    if (categoryMeals.length > 0) return categoryMeals;
+  const listedMeals = (category: string, sort: boolean) => {
+    const sortedMeals = meals.filter((meal) => meal.category === category);
+    if (sort) {
+      sortedMeals.sort((meal1, meal2) => meal1.price - meal2.price);
+    } else {
+      sortedMeals.sort((meal1, meal2) => meal2.price - meal1.price);
+    }
+    let renderedMeals = sortedMeals.map((meal) => (
+      <MealItem key={meal.id} meal={meal} />
+    ));
+    if (renderedMeals.length > 0) return renderedMeals;
     else return <p>No meals were found.</p>;
   };
-
-  // add event listeners on the tabs => that will trigger changing the sorting order
-  // for that category
 
   // another approach (super optional) - combined state including both active tab
   // and sorting order for that tab
@@ -90,15 +88,18 @@ const AvailableMeals = () => {
             <Tab>Breakfast</Tab>
             <Tab>Lunch</Tab>
             <Tab>Dinner</Tab>
+            <Styles.SortButton onClick={() => setSortType(!sortType)}>
+              Sort {!sortType ? 'Ascending' : 'Descending'}
+            </Styles.SortButton>
           </TabList>
           <TabPanel>
-            <ul>{listedMeals(CATEGORIES.BREAKFAST)}</ul>
+            <ul>{listedMeals(CATEGORIES.BREAKFAST, sortType)}</ul>
           </TabPanel>
           <TabPanel>
-            <ul>{listedMeals(CATEGORIES.LUNCH)}</ul>
+            <ul>{listedMeals(CATEGORIES.LUNCH, sortType)}</ul>
           </TabPanel>
           <TabPanel>
-            <ul>{listedMeals(CATEGORIES.DINNER)}</ul>
+            <ul>{listedMeals(CATEGORIES.DINNER, sortType)}</ul>
           </TabPanel>
         </Tabs>
       </Card>

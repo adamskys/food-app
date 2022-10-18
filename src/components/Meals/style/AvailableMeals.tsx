@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
 const MealsSection = styled.section`
   max-width: 60rem;
@@ -34,4 +35,22 @@ const MealsError = styled.section`
   color: red;
 `;
 
-export default { MealsSection, MealsLoading, MealsError };
+const SortButton = styled.button`
+  float: right;
+  font: inherit;
+  cursor: pointer;
+  background-color: #f55951;
+  border: 1px solid #f55951;
+  color: white;
+  padding: 0.25rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+
+  &:hover,
+  &:active {
+    background-color: #c9554f;
+    border-color: #c9554f;
+  }
+`;
+
+export default { MealsSection, MealsLoading, MealsError, SortButton };
