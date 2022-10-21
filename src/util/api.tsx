@@ -19,3 +19,10 @@ export const postData = async (jsonName: string, data: {}) => {
     body: JSON.stringify(data),
   });
 };
+
+export const patchData = async (jsonName: string, id: string, data: {}) => {
+  await fetch(`${API_URL}/${jsonName}/${id}.json`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  });
+};

@@ -34,6 +34,8 @@ const AvailableMeals = () => {
           description: responseData[key].description,
           price: responseData[key].price,
           category: responseData[key].category,
+          rating: responseData[key].rating,
+          nrOfVotes: responseData[key].nrOfVotes,
         });
       }
       setMeals(loadedMeals);

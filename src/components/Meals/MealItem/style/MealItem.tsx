@@ -24,4 +24,29 @@ const PriceDiv = styled.div`
   font-size: 1.25rem;
 `;
 
-export default { MealItem, DescriptionDiv, PriceDiv };
+const StarComponent = styled.section`
+  display: flex;
+  cursor: default;
+`;
+
+const Rating = styled.span`
+  font-weight: bold;
+  margin-left: 0.2rem;
+`;
+
+const Votes = styled.span`
+  display: flex;
+  align-items: center;
+  margin-left: 0.1rem;
+  font-size: 0.8rem;
+  color: #666;
+`;
+
+export default {
+  MealItem,
+  DescriptionDiv,
+  PriceDiv,
+  StarComponent,
+  Rating,
+  Votes,
+};
