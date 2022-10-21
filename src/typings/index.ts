@@ -3,4 +3,6 @@ export interface CartItemType {
   name: string;
   price: number;
   amount: number;
+  rating: number;
+  nrOfVotes: number;
 }
