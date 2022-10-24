@@ -44,18 +44,21 @@ const Rating: React.FC<RatingProps> = ({
   };
 
   const submitRatingHandler = async () => {
+    const newVotes = nrOfVotes + 1;
     const calculateRating = () => {
-      const finalRating = (rating * nrOfVotes + newRating) / (nrOfVotes + 1);
+      const finalRating = (rating * nrOfVotes + newRating) / newVotes;
       setCurrentRating(finalRating);
+      setCurrentVotes(newVotes);
       return finalRating;
     };
 
     const responseData = await patchData('meals', id, {
-      nrOfVotes: nrOfVotes + 1,
+      nrOfVotes: newVotes,
       rating: calculateRating(),
     });
     hideRatingHandler();
   };
+  // setCurrentVotes(nrOfVotes);
 
   return (
     <Modal onClose={hideRatingHandler}>

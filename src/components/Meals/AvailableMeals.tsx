@@ -6,6 +6,7 @@ import { getData } from '../../util/api';
 import { mealCategoryByDayTime } from '../../util/meals';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { HiArrowNarrowUp, HiArrowNarrowDown } from 'react-icons/hi';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
@@ -76,9 +77,6 @@ const AvailableMeals = () => {
     else return <p>No meals were found.</p>;
   };
 
-  // another approach (super optional) - combined state including both active tab
-  // and sorting order for that tab
-
   return (
     <Styles.MealsSection>
       <Card>
@@ -91,7 +89,12 @@ const AvailableMeals = () => {
             <Tab>Lunch</Tab>
             <Tab>Dinner</Tab>
             <Styles.SortButton onClick={() => setSortType(!sortType)}>
-              Sort {!sortType ? 'Ascending' : 'Descending'}
+              Sort by Rating
+              {!sortType ? <HiArrowNarrowDown /> : <HiArrowNarrowUp />}
+            </Styles.SortButton>
+            <Styles.SortButton onClick={() => setSortType(!sortType)}>
+              Sort by Price
+              {!sortType ? <HiArrowNarrowDown /> : <HiArrowNarrowUp />}
             </Styles.SortButton>
           </TabList>
           <TabPanel>
