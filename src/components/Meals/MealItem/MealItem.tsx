@@ -45,21 +45,9 @@ const MealItem: React.FC<MealItemType> = ({
   };
 
   const StarRating = () => {
-    // console.log('Str ratting > ', typeof rating);
-    return <ReactStars value={rating} edit={false} />;
+    return <ReactStars value={currentRating} edit={false} />;
   };
 
-  // Ideally you need both authentication and order history - but we'll get back to this
-
-  // List of requirements
-  // 1) When looking a list of meals I can see their rating (nr of stars) STAR 3.5/5()
-  // 2) When looking a list of meals I can see how many people have rated each meal
-  // 3) When clicking on the stars I'll get a modal allowing me to cast my rating
-  // 4) After rating a meal - the number of stars filled/unfilled will be updated
-  // 5) After rating a meal - the number of votes on that meal will be update (+1)
-
-  // Bonus: As a user I want to be able to vote on a meal just once (either based on my account - logged in use or IP address)
-  // Bonus of a bonus: I can only vote on a meal that is in my order history (of a specific user/needs authentication)
   return (
     <Styles.MealItem>
       <div>
@@ -69,7 +57,7 @@ const MealItem: React.FC<MealItemType> = ({
         <Styles.StarComponent onClick={() => setRatingShown(true)}>
           <StarRating />
           <Styles.Rating>{formattedRating}</Styles.Rating>
-          <Styles.Votes>({nrOfVotes})</Styles.Votes>
+          <Styles.Votes>({currentVotes})</Styles.Votes>
         </Styles.StarComponent>
         {ratingShown && (
           <Rating
