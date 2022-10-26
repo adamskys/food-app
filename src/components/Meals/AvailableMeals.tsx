@@ -10,7 +10,7 @@ import { HiArrowNarrowUp, HiArrowNarrowDown } from 'react-icons/hi';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-  const [sortType, setSortType] = useState(true);
+  const [sortType, setSortType] = useState({ type: '', dir: null });
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(false);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(
@@ -63,17 +63,28 @@ const AvailableMeals = () => {
       </Styles.MealsError>
     );
   }
-  const listedMeals = (category: string, sort: boolean) => {
+
+  const listedMeals = (
+    category: string,
+    sort: { type: string; dir: boolean }
+  ) => {
     const sortedMeals = meals.filter((meal) => meal.category === category);
-    if (sort) {
+    if (sort.type === 'price' && sort.dir) {
       sortedMeals.sort((meal1, meal2) => meal1.price - meal2.price);
-    } else {
+    }
+    if (sort.type === 'price' && !sort.dir) {
       sortedMeals.sort((meal1, meal2) => meal2.price - meal1.price);
+    }
+    if (sort.type === 'rating' && sort.dir) {
+      sortedMeals.sort((meal1, meal2) => meal1.rating - meal2.rating);
+    }
+    if (sort.type === 'rating' && !sort.dir) {
+      sortedMeals.sort((meal1, meal2) => meal2.rating - meal1.rating);
     }
     let renderedMeals = sortedMeals.map((meal) => (
       <MealItem key={meal.id} meal={meal} />
     ));
-    if (renderedMeals.length > 0) return renderedMeals;
+    if (renderedMeals.length > 0) return <ul>{renderedMeals}</ul>;
     else return <p>No meals were found.</p>;
   };
 
@@ -88,24 +99,32 @@ const AvailableMeals = () => {
             <Tab>Breakfast</Tab>
             <Tab>Lunch</Tab>
             <Tab>Dinner</Tab>
-            <Styles.SortButton onClick={() => setSortType(!sortType)}>
+            <Styles.SortButton
+              onClick={() =>
+                setSortType({ type: 'rating', dir: !sortType.dir })
+              }
+            >
               Sort by Rating
-              {!sortType ? <HiArrowNarrowDown /> : <HiArrowNarrowUp />}
+              {sortType.type === 'rating' && sortType.dir ? (
+                <HiArrowNarrowUp />
+              ) : (
+                <HiArrowNarrowDown />
+              )}
             </Styles.SortButton>
-            <Styles.SortButton onClick={() => setSortType(!sortType)}>
+            <Styles.SortButton
+              onClick={() => setSortType({ type: 'price', dir: !sortType.dir })}
+            >
               Sort by Price
-              {!sortType ? <HiArrowNarrowDown /> : <HiArrowNarrowUp />}
+              {sortType.type === 'price' && sortType.dir ? (
+                <HiArrowNarrowUp />
+              ) : (
+                <HiArrowNarrowDown />
+              )}
             </Styles.SortButton>
           </TabList>
-          <TabPanel>
-            <ul>{listedMeals(CATEGORIES.BREAKFAST, sortType)}</ul>
-          </TabPanel>
-          <TabPanel>
-            <ul>{listedMeals(CATEGORIES.LUNCH, sortType)}</ul>
-          </TabPanel>
-          <TabPanel>
-            <ul>{listedMeals(CATEGORIES.DINNER, sortType)}</ul>
-          </TabPanel>
+          <TabPanel>{listedMeals(CATEGORIES.BREAKFAST, sortType)}</TabPanel>
+          <TabPanel>{listedMeals(CATEGORIES.LUNCH, sortType)}</TabPanel>
+          <TabPanel>{listedMeals(CATEGORIES.DINNER, sortType)}</TabPanel>
         </Tabs>
       </Card>
     </Styles.MealsSection>
