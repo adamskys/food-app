@@ -58,7 +58,6 @@ const Rating: React.FC<RatingProps> = ({
     });
     hideRatingHandler();
   };
-  // setCurrentVotes(nrOfVotes);
 
   return (
     <Modal onClose={hideRatingHandler}>

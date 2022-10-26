@@ -1,4 +1,4 @@
-const CATEGORIES: { [key: string]: number } = {
+export const CATEGORIES: { [key: string]: number } = {
   breakfast: 0,
   lunch: 1,
   dinner: 2,
