@@ -89,7 +89,7 @@ const AvailableMeals = () => {
   };
 
   return (
-    <Styles.MealsSection>
+    <Styles.MealsSection data-testid="available-meals-list">
       <Card>
         <Tabs
           selectedIndex={activeCategoryIndex}

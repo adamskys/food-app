@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
-
-import Modal from '../../UI/Modal';
+import { Modal } from '@mui/material';
+import ModalStyles from '../../UI/style/Modal';
 import { patchData, postData } from '../../../util/api';
 import Styles from './style/Rating';
+
 import ReactStars from 'react-stars';
 
 interface RatingProps {
@@ -14,6 +15,7 @@ interface RatingProps {
   onClick?: ({}) => void;
   setCurrentRating: (r: number) => void;
   setCurrentVotes: (v: number) => void;
+  open: boolean;
 }
 
 const Rating: React.FC<RatingProps> = ({
@@ -24,6 +26,7 @@ const Rating: React.FC<RatingProps> = ({
   nrOfVotes,
   setCurrentRating,
   setCurrentVotes,
+  open,
 }) => {
   const [newRating, setNewRating] = useState(0);
 
@@ -60,8 +63,8 @@ const Rating: React.FC<RatingProps> = ({
   };
 
   return (
-    <Modal onClose={hideRatingHandler}>
-      <>
+    <Modal data-testid="rating-modal" open={open} onClose={hideRatingHandler}>
+      <ModalStyles.Modal>
         <MealName />
         <Styles.StarWrapper>
           <StarRating />
@@ -72,7 +75,7 @@ const Rating: React.FC<RatingProps> = ({
         <Styles.ButtonSubmit onClick={submitRatingHandler}>
           Confirm
         </Styles.ButtonSubmit>
-      </>
+      </ModalStyles.Modal>
     </Modal>
   );
 };

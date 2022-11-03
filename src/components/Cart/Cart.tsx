@@ -1,16 +1,21 @@
 import { useContext, useState } from 'react';
 
-import Modal from '../UI/Modal';
+import { Modal } from '@mui/material';
 import CartItem from './CartItem';
 import Styles from './style/Cart';
+import ModalStyles from '../UI/style/Modal';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 import { postData } from '../../util/api';
 import { CartItemType } from '../../typings';
-import { Props } from '../UI/Modal';
 import { CheckoutProps } from './Checkout';
 
-const Cart: React.FC<Props> = (props) => {
+interface CartProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const Cart: React.FC<CartProps> = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
@@ -73,7 +78,9 @@ const Cart: React.FC<Props> = (props) => {
       {cartItems}
       <Styles.TotalSection>
         <span>Total amount</span>
-        <span>{!hasItems ? '$0.00' : totalAmount}</span>
+        <span data-testid="amount-span">
+          {!hasItems ? '$0.00' : totalAmount}
+        </span>
       </Styles.TotalSection>
       {isCheckout && (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
@@ -94,10 +101,12 @@ const Cart: React.FC<Props> = (props) => {
   );
 
   return (
-    <Modal onClose={props.onClose}>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {!isSubmitting && didSubmit && didSubmitModalContent}
+    <Modal data-testid="modal" open={props.open} onClose={props.onClose}>
+      <ModalStyles.Modal>
+        {!isSubmitting && !didSubmit && cartModalContent}
+        {isSubmitting && isSubmittingModalContent}
+        {!isSubmitting && didSubmit && didSubmitModalContent}
+      </ModalStyles.Modal>
     </Modal>
   );
 };
