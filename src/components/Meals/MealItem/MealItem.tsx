@@ -29,6 +29,10 @@ const MealItem: React.FC<MealItemType> = ({
   const formattedPrice = `$${price.toFixed(2)}`;
   const formattedRating = currentRating.toFixed(2);
 
+  const showRatingHandler = () => {
+    setRatingShown(true);
+  };
+
   const hideRatingHandler = () => {
     setRatingShown(false);
   };
@@ -54,22 +58,25 @@ const MealItem: React.FC<MealItemType> = ({
         <h3>{name}</h3>
         <Styles.DescriptionDiv>{description}</Styles.DescriptionDiv>
         <Styles.PriceDiv>{formattedPrice}</Styles.PriceDiv>
-        <Styles.StarComponent onClick={() => setRatingShown(true)}>
+        <Styles.StarComponent
+          data-testid="star-rating"
+          onClick={() => setRatingShown(true)}
+        >
           <StarRating />
           <Styles.Rating>{formattedRating}</Styles.Rating>
           <Styles.Votes>({currentVotes})</Styles.Votes>
         </Styles.StarComponent>
-        {ratingShown && (
-          <Rating
-            id={id}
-            name={name}
-            nrOfVotes={nrOfVotes}
-            rating={rating}
-            hideRatingHandler={hideRatingHandler}
-            setCurrentRating={setCurrentRating}
-            setCurrentVotes={setCurrentVotes}
-          />
-        )}
+
+        <Rating
+          id={id}
+          name={name}
+          nrOfVotes={nrOfVotes}
+          rating={rating}
+          setCurrentRating={setCurrentRating}
+          setCurrentVotes={setCurrentVotes}
+          hideRatingHandler={hideRatingHandler}
+          open={ratingShown}
+        />
       </div>
       <div>
         <MealItemForm id={id} onAddToCart={addToCartHandler} />

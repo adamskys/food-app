@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           <img src={logoImg} />
         </Styles.LogoContainer>
         <HeaderCartButton onShowCartHandler={showCartHandler} />
-        {cartShown && <Cart onClose={hideCartHandler} />}
+        <Cart onClose={hideCartHandler} open={cartShown} />
       </Styles.Header>
       <Styles.ImgContainer>
         <img src={mealsImg} alt="A table full of food" />

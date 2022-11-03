@@ -37,14 +37,17 @@ const HeaderCartButton: React.FC<Props> = (props) => {
 
   return (
     <Styles.StyledButton
+      data-testid="header-cart-button"
       className={btnClasses}
       onClick={props.onShowCartHandler}
     >
-      <Styles.Icon>
+      <Styles.Icon data-testid="header-cart-icon">
         <CartIcon />
       </Styles.Icon>
       <span></span>
-      <Styles.Badge>{numberOfCartItems}</Styles.Badge>
+      <Styles.Badge data-testid="header-cart-badge">
+        {numberOfCartItems}
+      </Styles.Badge>
     </Styles.StyledButton>
   );
 };
