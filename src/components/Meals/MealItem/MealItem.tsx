@@ -29,10 +29,6 @@ const MealItem: React.FC<MealItemType> = ({
   const formattedPrice = `$${price.toFixed(2)}`;
   const formattedRating = currentRating.toFixed(2);
 
-  const showRatingHandler = () => {
-    setRatingShown(true);
-  };
-
   const hideRatingHandler = () => {
     setRatingShown(false);
   };
@@ -53,7 +49,7 @@ const MealItem: React.FC<MealItemType> = ({
   };
 
   return (
-    <Styles.MealItem>
+    <Styles.MealItem data-testid="meal-item">
       <div>
         <h3>{name}</h3>
         <Styles.DescriptionDiv>{description}</Styles.DescriptionDiv>
@@ -70,6 +66,7 @@ const MealItem: React.FC<MealItemType> = ({
         <Rating
           id={id}
           name={name}
+          description={description}
           nrOfVotes={nrOfVotes}
           rating={rating}
           setCurrentRating={setCurrentRating}

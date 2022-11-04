@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Modal } from '@mui/material';
 import ModalStyles from '../../UI/style/Modal';
-import { patchData, postData } from '../../../util/api';
+import { patchData } from '../../../util/api';
 import Styles from './style/Rating';
 
 import ReactStars from 'react-stars';
@@ -10,6 +10,7 @@ interface RatingProps {
   hideRatingHandler: () => void;
   id: string;
   name: string;
+  description: string;
   nrOfVotes: number;
   rating: number;
   onClick?: ({}) => void;
@@ -22,6 +23,7 @@ const Rating: React.FC<RatingProps> = ({
   hideRatingHandler,
   id,
   name,
+  description,
   rating,
   nrOfVotes,
   setCurrentRating,
@@ -43,7 +45,12 @@ const Rating: React.FC<RatingProps> = ({
   };
 
   const MealName = () => {
-    return <Styles.MealName>{name}</Styles.MealName>;
+    return (
+      <Styles.MealName>
+        Vote for: {name}
+        <Styles.MealDesc>{description}</Styles.MealDesc>
+      </Styles.MealName>
+    );
   };
 
   const submitRatingHandler = async () => {
