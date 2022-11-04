@@ -99,14 +99,14 @@ describe('Meals component', () => {
   beforeEach(() => {
     fetch.resetMocks();
   });
-  it('Call api and return data', async () => {
+  it('Check if there mealItem exists after fetching data', async () => {
     fetch.mockResponseOnce(JSON.stringify(data));
     await act(async () => {
       render(<AvailableMeals />);
     });
     const availableMeals = screen.getByTestId('available-meals-list');
-    expect(availableMeals).not.toContainHTML('<p>No meals were found.</p>');
-    //check by name/price instead of paragraph
+    const mealItem = screen.getAllByTestId('meal-item');
+    expect(availableMeals).toContainElement(mealItem[0]);
   });
   it('Return meals not found in case there is no data', async () => {
     fetch.mockResponseOnce(JSON.stringify({}));

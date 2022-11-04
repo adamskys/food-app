@@ -12,9 +12,11 @@ const Backdrop = styled.div`
 
 const Modal = styled.div`
   position: fixed;
-  top: 15vh;
+  top: 5vh;
   left: 5%;
   width: 90%;
+  // height: 100%;
+  overflow: auto;
   background-color: white;
   padding: 1rem;
   border-radius: 12px;

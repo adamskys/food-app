@@ -43,4 +43,12 @@ const ButtonSubmit = styled(Button)`
     color: white;
 `;
 
-export default { StarWrapper, MealName, ButtonClose, ButtonSubmit };
+const MealDesc = styled.p`
+  font-style: italic;
+  color: #373737;
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin: 0;
+`;
+
+export default { StarWrapper, MealName, ButtonClose, ButtonSubmit, MealDesc };
